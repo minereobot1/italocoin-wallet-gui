@@ -5,7 +5,7 @@
         {{ $t("strings.checkTransaction.description") }}
       </div>
       <div>
-        <LokiField
+        <ItaloField
           :label="$t('fieldLabels.transactionId')"
           :error="$v.txid.$error"
         >
@@ -17,8 +17,8 @@
             dense
             @blur="$v.txid.$touch"
           />
-        </LokiField>
-        <LokiField
+        </ItaloField>
+        <ItaloField
           class="q-mt-md"
           :label="$t('fieldLabels.address')"
           :error="$v.address.$error"
@@ -32,8 +32,8 @@
             dense
             @blur="$v.address.$touch"
           />
-        </LokiField>
-        <LokiField class="q-mt-md" :label="$t('fieldLabels.message')" optional>
+        </ItaloField>
+        <ItaloField class="q-mt-md" :label="$t('fieldLabels.message')" optional>
           <q-input
             v-model.trim="message"
             :dark="theme == 'dark'"
@@ -41,8 +41,8 @@
             borderless
             dense
           />
-        </LokiField>
-        <LokiField
+        </ItaloField>
+        <ItaloField
           class="q-mt-md"
           :label="$t('fieldLabels.signature')"
           :error="$v.signature.$error"
@@ -54,7 +54,7 @@
             borderless
             dense
           />
-        </LokiField>
+        </ItaloField>
         <div class="submit-button">
           <q-btn color="primary" :label="$t('buttons.check')" @click="check" />
           <q-btn
@@ -83,7 +83,7 @@
             {{ $t("strings.checkTransaction.infoTitles.received") }}
           </div>
           <div>
-            <FormatLoki :amount="status.state.received" raw-value />
+            <FormatItalo :amount="status.state.received" raw-value />
           </div>
         </div>
         <div v-if="status.state.in_pool != null" class="q-mb-sm">
@@ -108,14 +108,14 @@ import { mapState } from "vuex";
 import { required } from "vuelidate/lib/validators";
 import { address } from "src/validators/common";
 import { i18n } from "boot/i18n";
-import LokiField from "components/loki_field";
-import FormatLoki from "components/format_loki";
+import ItaloField from "components/italo_field";
+import FormatItalo from "components/format_italo";
 
 export default {
   name: "CheckTransaction",
   components: {
-    LokiField,
-    FormatLoki
+    ItaloField,
+    FormatItalo
   },
   data() {
     return {

@@ -10,7 +10,7 @@
         <div class="row gutter-md">
           <!-- Amount -->
           <div class="col-6 amount">
-            <LokiField
+            <ItaloField
               :label="$t('fieldLabels.amount')"
               :error="$v.newTx.amount.$error"
             >
@@ -32,12 +32,12 @@
               >
                 {{ $t("buttons.all") }}
               </q-btn>
-            </LokiField>
+            </ItaloField>
           </div>
 
           <!-- Priority -->
           <div class="col-6 priority">
-            <LokiField :label="$t('fieldLabels.priority')">
+            <ItaloField :label="$t('fieldLabels.priority')">
               <q-select
                 v-model="newTx.priority"
                 emit-value
@@ -47,13 +47,13 @@
                 borderless
                 dense
               />
-            </LokiField>
+            </ItaloField>
           </div>
         </div>
 
         <!-- Address -->
         <div class="col q-mt-sm">
-          <LokiField
+          <ItaloField
             :label="$t('fieldLabels.address')"
             :error="$v.newTx.address.$error"
           >
@@ -72,22 +72,22 @@
             >
               {{ $t("buttons.contacts") }}
             </q-btn>
-          </LokiField>
+          </ItaloField>
         </div>
 
         <!-- Notes -->
         <div class="col q-mt-sm">
-          <LokiField :label="$t('fieldLabels.notes')" optional>
+          <ItaloField :label="$t('fieldLabels.notes')" optional>
             <q-input
               v-model="newTx.note"
-              class="full-width text-area-loki"
+              class="full-width text-area-italo"
               type="textarea"
               :dark="theme == 'dark'"
               :placeholder="$t('placeholders.transactionNotes')"
               borderless
               dense
             />
-          </LokiField>
+          </ItaloField>
         </div>
 
         <q-checkbox
@@ -97,7 +97,7 @@
           color="dark"
         />
         <div v-if="newTx.address_book.save">
-          <LokiField :label="$t('fieldLabels.name')" optional>
+          <ItaloField :label="$t('fieldLabels.name')" optional>
             <q-input
               v-model="newTx.address_book.name"
               :dark="theme == 'dark'"
@@ -105,19 +105,19 @@
               borderless
               dense
             />
-          </LokiField>
-          <LokiField class="q-mt-sm" :label="$t('fieldLabels.notes')" optional>
+          </ItaloField>
+          <ItaloField class="q-mt-sm" :label="$t('fieldLabels.notes')" optional>
             <q-input
               v-model="newTx.address_book.description"
               type="textarea"
-              class="full-width text-area-loki"
+              class="full-width text-area-italo"
               rows="2"
               :dark="theme == 'dark'"
               :placeholder="$t('placeholders.additionalNotes')"
               borderless
               dense
             />
-          </LokiField>
+          </ItaloField>
         </div>
         <!-- div required so button below checkbox -->
         <div>
@@ -150,7 +150,7 @@
 import { mapState } from "vuex";
 import { required, decimal } from "vuelidate/lib/validators";
 import { address, greater_than_zero } from "src/validators/common";
-import LokiField from "components/loki_field";
+import ItaloField from "components/italo_field";
 import WalletPassword from "src/mixins/wallet_password";
 import ConfirmDialogMixin from "src/mixins/confirm_dialog_mixin";
 import ConfirmTransactionDialog from "components/confirm_tx_dialog";
@@ -161,7 +161,7 @@ const DO_NOTHING = 10;
 
 export default {
   components: {
-    LokiField,
+    ItaloField,
     ConfirmTransactionDialog
   },
   mixins: [WalletPassword, ConfirmDialogMixin],

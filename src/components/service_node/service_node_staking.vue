@@ -5,11 +5,11 @@
         {{ $t("strings.serviceNodeContributionDescription") }}
         <span
           style="cursor: pointer; text-decoration: underline;"
-          @click="lokiWebsite"
-          >Loki {{ $t("strings.website") }}.</span
+          @click="italoWebsite"
+          >Italo {{ $t("strings.website") }}.</span
         >
       </p>
-      <LokiField
+      <ItaloField
         :label="$t('fieldLabels.serviceNodeKey')"
         :error="$v.service_node.key.$error"
       >
@@ -21,8 +21,8 @@
           dense
           @blur="$v.service_node.key.$touch"
         />
-      </LokiField>
-      <LokiField
+      </ItaloField>
+      <ItaloField
         :label="$t('fieldLabels.amount')"
         class="q-mt-md"
         :error="$v.service_node.amount.$error"
@@ -52,7 +52,7 @@
           :disable="!areButtonsEnabled()"
           @click="service_node.amount = maxStake(service_node.key)"
         />
-      </LokiField>
+      </ItaloField>
       <div class="submit-button">
         <q-btn
           :disable="!is_able_to_send"
@@ -96,7 +96,7 @@ const objectAssignDeep = require("object-assign-deep");
 import { mapState } from "vuex";
 import { required, decimal } from "vuelidate/lib/validators";
 import { service_node_key, greater_than_zero } from "src/validators/common";
-import LokiField from "components/loki_field";
+import ItaloField from "components/italo_field";
 import WalletPassword from "src/mixins/wallet_password";
 import ConfirmDialogMixin from "src/mixins/confirm_dialog_mixin";
 import ServiceNodeContribute from "./service_node_contribute";
@@ -108,7 +108,7 @@ const DO_NOTHING = 10;
 export default {
   name: "ServiceNodeStaking",
   components: {
-    LokiField,
+    ItaloField,
     ServiceNodeContribute,
     ConfirmTransactionDialog
   },
@@ -278,8 +278,8 @@ export default {
     }
   },
   methods: {
-    lokiWebsite() {
-      const url = "https://loki.network/service-nodes/";
+    italoWebsite() {
+      const url = "https://italo.network/service-nodes/";
       this.$gateway.send("core", "open_url", {
         url
       });
@@ -294,7 +294,7 @@ export default {
     },
     maxStake() {
       const node = this.getNodeWithPubKey();
-      return this.openForContributionLoki(node);
+      return this.openForContributionItalo(node);
     },
     getFeeDecimal(node) {
       const operatorPortion = node.portions_for_operator;

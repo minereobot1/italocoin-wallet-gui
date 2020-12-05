@@ -35,11 +35,11 @@ export class Backend {
 
   init(config) {
     if (os.platform() === "win32") {
-      this.config_dir = "C:\\ProgramData\\loki";
-      this.wallet_dir = `${os.homedir()}\\Documents\\Loki`;
+      this.config_dir = "C:\\ProgramData\\italo";
+      this.wallet_dir = `${os.homedir()}\\Documents\\Italo`;
     } else {
-      this.config_dir = path.join(os.homedir(), ".loki");
-      this.wallet_dir = path.join(os.homedir(), "Loki");
+      this.config_dir = path.join(os.homedir(), ".italo");
+      this.wallet_dir = path.join(os.homedir(), "Italo");
     }
 
     if (!fs.existsSync(this.config_dir)) {
@@ -119,11 +119,11 @@ export class Backend {
         port: "22023"
       },
       {
-        host: "explorer.loki.aussie-pools.com",
+        host: "explorer.italo.aussie-pools.com",
         port: "18081"
       },
       {
-        host: "public.loki.foundation",
+        host: "public.italo.foundation",
         port: "22023"
       }
     ];
@@ -283,8 +283,8 @@ export class Backend {
         if (path) {
           const baseUrl =
             net_type === "testnet"
-              ? "https://lokitestnet.com"
-              : "https://lokiblocks.com";
+              ? "https://italotestnet.com"
+              : "https://italoblocks.com";
           const url = `${baseUrl}/${path}/`;
           require("electron").shell.openExternal(url + params.id);
         }
@@ -337,7 +337,7 @@ export class Backend {
   async checkVersion() {
     try {
       const { data } = await axios.get(
-        "https://api.github.com/repos/loki-project/loki-electron-gui-wallet/releases/latest"
+        "https://api.github.com/repos/italo-project/italo-electron-gui-wallet/releases/latest"
       );
       // remove the 'v' from front of the version
       const latestVersion = data.tag_name.substring(1);

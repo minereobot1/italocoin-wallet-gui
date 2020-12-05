@@ -29,25 +29,25 @@ export class Daemon {
   checkVersion() {
     return new Promise(resolve => {
       if (process.platform === "win32") {
-        let lokid_path = path.join(__ryo_bin, "lokid.exe");
-        let lokid_version_cmd = `"${lokid_path}" --version`;
-        if (!fs.existsSync(lokid_path)) {
+        let italod_path = path.join(__ryo_bin, "italod.exe");
+        let italod_version_cmd = `"${italod_path}" --version`;
+        if (!fs.existsSync(italod_path)) {
           resolve(false);
         }
-        child_process.exec(lokid_version_cmd, (error, stdout) => {
+        child_process.exec(italod_version_cmd, (error, stdout) => {
           if (error) {
             resolve(false);
           }
           resolve(stdout);
         });
       } else {
-        let lokid_path = path.join(__ryo_bin, "lokid");
-        let lokid_version_cmd = `"${lokid_path}" --version`;
-        if (!fs.existsSync(lokid_path)) {
+        let italod_path = path.join(__ryo_bin, "italod");
+        let italod_version_cmd = `"${italod_path}" --version`;
+        if (!fs.existsSync(italod_path)) {
           resolve(false);
         }
         child_process.exec(
-          lokid_version_cmd,
+          italod_version_cmd,
           { detached: true },
           (error, stdout) => {
             if (error) {
@@ -148,7 +148,7 @@ export class Daemon {
         args.push("--stagenet");
       }
 
-      args.push("--log-file", path.join(dirs[net_type], "logs", "lokid.log"));
+      args.push("--log-file", path.join(dirs[net_type], "logs", "italod.log"));
       if (daemon.rpc_bind_ip !== "127.0.0.1") {
         args.push("--confirm-external-bind");
       }
@@ -173,12 +173,12 @@ export class Daemon {
           if (status === "closed") {
             if (process.platform === "win32") {
               this.daemonProcess = child_process.spawn(
-                path.join(__ryo_bin, "lokid.exe"),
+                path.join(__ryo_bin, "italod.exe"),
                 args
               );
             } else {
               this.daemonProcess = child_process.spawn(
-                path.join(__ryo_bin, "lokid"),
+                path.join(__ryo_bin, "italod"),
                 args,
                 {
                   detached: true
@@ -519,7 +519,7 @@ export class Daemon {
         {
           name_hash: nameHash,
           // 0 = session
-          // 2 = lokinet
+          // 2 = italonet
           types: [0, 2]
         }
       ]
@@ -538,8 +538,8 @@ export class Daemon {
     return (records || []).map(record => {
       // Record type is in uint16 format
       // Session = 0
-      // Lokinet = 2
-      let type = "lokinet";
+      // Italonet = 2
+      let type = "italonet";
       if (record.type === 0) {
         type = "session";
       }

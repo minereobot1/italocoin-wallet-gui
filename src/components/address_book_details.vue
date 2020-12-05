@@ -28,7 +28,7 @@
       </q-header>
       <q-page-container>
         <div class="address-book-modal q-mx-md">
-          <LokiField
+          <ItaloField
             :label="$t('fieldLabels.address')"
             :error="$v.newEntry.address.$error"
           >
@@ -47,26 +47,26 @@
               :icon="newEntry.starred ? 'star' : 'star_border'"
               @click="updateStarred"
             />
-          </LokiField>
-          <LokiField :label="$t('fieldLabels.name')">
+          </ItaloField>
+          <ItaloField :label="$t('fieldLabels.name')">
             <q-input
               v-model.trim="newEntry.name"
               :dark="theme == 'dark'"
               borderless
               dense
             />
-          </LokiField>
-          <LokiField :label="$t('fieldLabels.notes')" optional>
+          </ItaloField>
+          <ItaloField :label="$t('fieldLabels.notes')" optional>
             <q-input
               v-model="newEntry.description"
               :placeholder="$t('placeholders.additionalNotes')"
               type="textarea"
-              class="full-width text-area-loki"
+              class="full-width text-area-italo"
               :dark="theme == 'dark'"
               borderless
               dense
             />
-          </LokiField>
+          </ItaloField>
 
           <q-btn
             v-if="mode == 'edit'"
@@ -140,7 +140,7 @@
 import { mapState } from "vuex";
 import AddressHeader from "components/address_header";
 import TxList from "components/tx_list";
-import LokiField from "components/loki_field";
+import ItaloField from "components/italo_field";
 import { address } from "src/validators/common";
 import { required } from "vuelidate/lib/validators";
 export default {
@@ -148,7 +148,7 @@ export default {
   components: {
     AddressHeader,
     TxList,
-    LokiField
+    ItaloField
   },
   data() {
     return {
@@ -258,7 +258,7 @@ export default {
 <style lang="scss">
 .address-book-details {
   .address-book-modal {
-    > .loki-field {
+    > .italo-field {
       margin-top: 16px;
     }
 

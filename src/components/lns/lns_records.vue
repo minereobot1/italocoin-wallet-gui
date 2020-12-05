@@ -1,7 +1,7 @@
 <template>
   <div class="lns-record-list">
     <div v-if="needsDecryption" class="decrypt row justify-between items-end">
-      <LokiField
+      <ItaloField
         :label="$t('fieldLabels.decryptRecord')"
         :disable="decrypting"
         :error="$v.name.$error"
@@ -15,7 +15,7 @@
           :disable="decrypting"
           @blur="$v.name.$touch"
         />
-      </LokiField>
+      </ItaloField>
       <div class="btn-wrapper q-ml-md row items-center">
         <q-btn
           color="primary"
@@ -31,17 +31,17 @@
       }}</span>
       <LNSRecordList
         :record-list="session_records"
-        :is-lokinet="false"
+        :is-italonet="false"
         @onUpdate="onUpdate"
       />
     </div>
-    <div v-if="lokinet_records.length > 0" class="records-group">
+    <div v-if="italonet_records.length > 0" class="records-group">
       <span class="record-type-title">{{
-        $t("titles.lnsLokinetRecords")
+        $t("titles.lnsItalonetRecords")
       }}</span>
       <LNSRecordList
-        :record-list="lokinet_records"
-        :is-lokinet="true"
+        :record-list="italonet_records"
+        :is-italonet="true"
         @onUpdate="onUpdate"
         @onRenew="onRenew"
       />
@@ -51,14 +51,14 @@
 
 <script>
 import { mapState } from "vuex";
-import LokiField from "components/loki_field";
-import { session_name_or_lokinet_name } from "src/validators/common";
+import ItaloField from "components/italo_field";
+import { session_name_or_italonet_name } from "src/validators/common";
 import LNSRecordList from "./lns_record_list";
 
 export default {
   name: "LNSRecords",
   components: {
-    LokiField,
+    ItaloField,
     LNSRecordList
   },
   data() {
@@ -81,11 +81,11 @@ export default {
     session_records(state) {
       return this.records_of_type(state, "session");
     },
-    lokinet_records(state) {
-      return this.records_of_type(state, "lokinet");
+    italonet_records(state) {
+      return this.records_of_type(state, "italonet");
     },
     needsDecryption() {
-      const records = [...this.lokinet_records, ...this.session_records];
+      const records = [...this.italonet_records, ...this.session_records];
       return records.find(r => this.isLocked(r));
     }
   }),
@@ -168,8 +168,8 @@ export default {
 
       let type = "session";
       // session names cannot have a "." so this is safe
-      if (name.endsWith(".loki")) {
-        type = "lokinet";
+      if (name.endsWith(".italo")) {
+        type = "italonet";
       }
 
       this.$gateway.send("wallet", "decrypt_record", {
@@ -182,7 +182,7 @@ export default {
 
   validations: {
     name: {
-      session_name_or_lokinet_name
+      session_name_or_italonet_name
     }
   }
 };
@@ -197,7 +197,7 @@ export default {
     cursor: default;
   }
 
-  .loki-field {
+  .italo-field {
     flex: 1;
   }
 

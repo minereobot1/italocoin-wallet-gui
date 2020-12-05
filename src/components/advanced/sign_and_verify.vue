@@ -10,7 +10,7 @@
       <div v-else>
         <div class="text-h6">{{ $t("titles.advanced.sign") }}</div>
         <div class="row justify-between items-end">
-          <LokiField :label="$t('fieldLabels.data')">
+          <ItaloField :label="$t('fieldLabels.data')">
             <q-input
               v-model.trim="toSign"
               :dark="theme == 'dark'"
@@ -18,7 +18,7 @@
               dense
               :placeholder="$t('placeholders.dataToSign')"
             />
-          </LokiField>
+          </ItaloField>
           <div class="btn-wrapper q-ml-md q-py-sm">
             <q-btn
               color="primary"
@@ -34,7 +34,7 @@
         {{ $t("titles.advanced.verify") }}
       </div>
       <div class="justify-between items-end">
-        <LokiField class="q-mt-md" :label="$t('fieldLabels.signature')">
+        <ItaloField class="q-mt-md" :label="$t('fieldLabels.signature')">
           <q-input
             v-model.trim="signatureToVerify"
             :dark="theme == 'dark'"
@@ -42,8 +42,8 @@
             dense
             :placeholder="$t('placeholders.signature')"
           />
-        </LokiField>
-        <LokiField class="q-mt-md" :label="$t('fieldLabels.data')">
+        </ItaloField>
+        <ItaloField class="q-mt-md" :label="$t('fieldLabels.data')">
           <q-input
             v-model.trim="unsignedData"
             :dark="theme == 'dark'"
@@ -51,8 +51,8 @@
             dense
             :placeholder="$t('placeholders.unsignedData')"
           />
-        </LokiField>
-        <LokiField class="q-mt-md" :label="$t('fieldLabels.address')">
+        </ItaloField>
+        <ItaloField class="q-mt-md" :label="$t('fieldLabels.address')">
           <q-input
             v-model.trim="address"
             :dark="theme == 'dark'"
@@ -60,7 +60,7 @@
             dense
             :placeholder="$t('placeholders.addressOfSigner')"
           />
-        </LokiField>
+        </ItaloField>
         <div class="submit-button">
           <q-btn
             color="primary"
@@ -92,13 +92,13 @@
 
 <script>
 const { clipboard } = require("electron");
-import LokiField from "components/loki_field";
+import ItaloField from "components/italo_field";
 import SignatureDialog from "./signature_dialog";
 import { mapState } from "vuex";
 export default {
   name: "SignAndVerify",
   components: {
-    LokiField,
+    ItaloField,
     SignatureDialog
   },
   data() {
@@ -228,7 +228,7 @@ export default {
     cursor: default;
   }
 
-  .loki-field {
+  .italo-field {
     flex: 1;
   }
 }

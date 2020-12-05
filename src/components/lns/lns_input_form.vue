@@ -2,22 +2,22 @@
   <div class="lns-input-form">
     <!-- Type -->
     <div class="col q-mt-sm">
-      <LokiField :label="$t('fieldLabels.lnsType')" :disable="updating">
+      <ItaloField :label="$t('fieldLabels.lnsType')" :disable="updating">
         <q-select
           v-model.trim="record.type"
           emit-value
           map-options
-          :options="renewing ? lokinetOptions : typeOptions"
+          :options="renewing ? italonetOptions : typeOptions"
           :dark="theme == 'dark'"
           :disable="updating"
           borderless
           dense
         />
-      </LokiField>
+      </ItaloField>
     </div>
     <!-- Name -->
     <div class="col q-mt-sm">
-      <LokiField
+      <ItaloField
         :label="$t('fieldLabels.name')"
         :disable="disableName"
         :error="$v.record.name.$error"
@@ -29,15 +29,15 @@
           :disable="disableName"
           borderless
           dense
-          :suffix="record.type === 'session' ? '' : '.loki'"
+          :suffix="record.type === 'session' ? '' : '.italo'"
           @blur="$v.record.name.$touch"
         />
-      </LokiField>
+      </ItaloField>
     </div>
 
-    <!-- Value (Session ID, Wallet Address or .loki address) -->
+    <!-- Value (Session ID, Wallet Address or .italo address) -->
     <div class="col q-mt-sm">
-      <LokiField
+      <ItaloField
         class="q-mt-md"
         :label="value_field_label"
         :error="$v.record.value.$error"
@@ -49,15 +49,15 @@
           borderless
           dense
           :disable="renewing"
-          :suffix="record.type === 'session' ? '' : '.loki'"
+          :suffix="record.type === 'session' ? '' : '.italo'"
           @blur="$v.record.value.$touch"
         />
-      </LokiField>
+      </ItaloField>
     </div>
 
     <!-- Owner -->
     <div class="col q-mt-sm">
-      <LokiField
+      <ItaloField
         class="q-mt-md"
         :label="$t('fieldLabels.owner')"
         :error="$v.record.owner.$error"
@@ -72,12 +72,12 @@
           :disable="renewing"
           @blur="$v.record.owner.$touch"
         />
-      </LokiField>
+      </ItaloField>
     </div>
 
     <!-- Backup owner -->
     <div class="col q-mt-sm">
-      <LokiField
+      <ItaloField
         class="q-mt-md"
         :label="$t('fieldLabels.backupOwner')"
         :error="$v.record.backup_owner.$error"
@@ -92,7 +92,7 @@
           dense
           @blur="$v.record.backup_owner.$touch"
         />
-      </LokiField>
+      </ItaloField>
     </div>
     <div class="buttons">
       <q-btn
@@ -116,17 +116,17 @@ import { required, maxLength } from "vuelidate/lib/validators";
 import {
   address,
   session_id,
-  lokinet_address,
-  lokinet_name,
+  italonet_address,
+  italonet_name,
   session_name
 } from "src/validators/common";
-import LokiField from "components/loki_field";
+import ItaloField from "components/italo_field";
 import WalletPassword from "src/mixins/wallet_password";
 
 export default {
   name: "LNSInputForm",
   components: {
-    LokiField
+    ItaloField
   },
   mixins: [WalletPassword],
   props: {
@@ -168,25 +168,25 @@ export default {
     let sessionOptions = [
       { label: this.$t("strings.lns.sessionID"), value: "session" }
     ];
-    let lokinetOptions = [
-      { label: this.$t("strings.lns.lokinetName1Year"), value: "lokinet_1y" },
+    let italonetOptions = [
+      { label: this.$t("strings.lns.italonetName1Year"), value: "italonet_1y" },
       {
-        label: this.$t("strings.lns.lokinetNameXYears", { years: 2 }),
-        value: "lokinet_2y"
+        label: this.$t("strings.lns.italonetNameXYears", { years: 2 }),
+        value: "italonet_2y"
       },
       {
-        label: this.$t("strings.lns.lokinetNameXYears", { years: 5 }),
-        value: "lokinet_5y"
+        label: this.$t("strings.lns.italonetNameXYears", { years: 5 }),
+        value: "italonet_5y"
       },
       {
-        label: this.$t("strings.lns.lokinetNameXYears", { years: 10 }),
-        value: "lokinet_10y"
+        label: this.$t("strings.lns.italonetNameXYears", { years: 10 }),
+        value: "italonet_10y"
       }
     ];
-    let typeOptions = [...sessionOptions, ...lokinetOptions];
+    let typeOptions = [...sessionOptions, ...italonetOptions];
 
     const initialRecord = {
-      // Lokinet 1 year is valid on renew or purchase
+      // Italonet 1 year is valid on renew or purchase
       type: typeOptions[1].value,
       name: "",
       value: "",
@@ -196,7 +196,7 @@ export default {
     return {
       record: { ...initialRecord },
       typeOptions,
-      lokinetOptions
+      italonetOptions
     };
   },
   computed: mapState({
@@ -209,7 +209,7 @@ export default {
       if (this.record.type === "session") {
         return this.$t("fieldLabels.sessionId");
       } else {
-        return this.$t("fieldLabels.lokinetFullAddress");
+        return this.$t("fieldLabels.italonetFullAddress");
       }
     },
     can_update() {
@@ -233,7 +233,7 @@ export default {
       if (this.record.type === "session") {
         return this.$t("placeholders.sessionId");
       } else {
-        return this.$t("placeholders.lokinetFullAddress");
+        return this.$t("placeholders.italonetFullAddress");
       }
     },
     owner_placeholder() {
@@ -357,8 +357,8 @@ export default {
           if (this.record.type === "session") {
             return session_name(_value);
           } else {
-            // shortened lokinet LNS name
-            return lokinet_name(_value);
+            // shortened italonet LNS name
+            return italonet_name(_value);
           }
         }
       },
@@ -374,8 +374,8 @@ export default {
           if (this.record.type === "session") {
             return session_id(_value);
           } else {
-            // full lokinet address
-            return lokinet_address(_value);
+            // full italonet address
+            return italonet_address(_value);
           }
         }
       },

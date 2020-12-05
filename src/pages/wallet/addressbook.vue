@@ -7,11 +7,11 @@
     </div>
 
     <template v-if="address_book_combined.length">
-      <q-list link no-border :dark="theme == 'dark'" class="loki-list">
+      <q-list link no-border :dark="theme == 'dark'" class="italo-list">
         <q-item
           v-for="(entry, index) in address_book_combined"
           :key="`${entry.address}-${entry.name}-${index}`"
-          class="loki-list-item"
+          class="italo-list-item"
           @click.native="details(entry)"
         >
           <q-item-section>
@@ -128,7 +128,7 @@ export default {
     font-weight: 500;
   }
 
-  .loki-list-item {
+  .italo-list-item {
     cursor: pointer;
     padding-top: 12px;
     padding-bottom: 12px;

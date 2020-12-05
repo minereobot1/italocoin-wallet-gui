@@ -5,7 +5,7 @@
         {{ $t("strings.proveTransactionDescription") }}
       </div>
       <div>
-        <LokiField
+        <ItaloField
           :label="$t('fieldLabels.transactionId')"
           :error="$v.txid.$error"
         >
@@ -17,8 +17,8 @@
             dense
             @blur="$v.txid.$touch"
           />
-        </LokiField>
-        <LokiField
+        </ItaloField>
+        <ItaloField
           class="q-mt-md"
           :label="$t('fieldLabels.address')"
           :error="$v.address.$error"
@@ -32,8 +32,8 @@
             dense
             @blur="$v.address.$touch"
           />
-        </LokiField>
-        <LokiField class="q-mt-md" :label="$t('fieldLabels.message')" optional>
+        </ItaloField>
+        <ItaloField class="q-mt-md" :label="$t('fieldLabels.message')" optional>
           <q-input
             v-model.trim="message"
             :dark="theme == 'dark'"
@@ -41,7 +41,7 @@
             borderless
             dense
           />
-        </LokiField>
+        </ItaloField>
         <div class="buttons submit-button">
           <q-btn
             color="primary"
@@ -79,13 +79,13 @@
 import { mapState } from "vuex";
 import { required } from "vuelidate/lib/validators";
 import { address } from "src/validators/common";
-import LokiField from "components/loki_field";
+import ItaloField from "components/italo_field";
 import { clipboard } from "electron";
 
 export default {
   name: "ProveTransaction",
   components: {
-    LokiField
+    ItaloField
   },
   data() {
     return {

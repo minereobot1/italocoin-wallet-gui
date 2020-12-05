@@ -22,26 +22,26 @@
     <!-- TODO: Move this to it's own component -->
     <q-dialog ref="aboutModal" minimized>
       <div class="about-modal">
-        <img class="q-mb-md" src="loki.svg" height="42" />
+        <img class="q-mb-md" src="italo.svg" height="42" />
 
         <p class="q-my-sm">Wallet Version: v{{ version }}</p>
         <p class="q-my-sm">Deaemon Version: v{{ daemonVersion }}</p>
-        <p class="q-my-sm">Copyright (c) 2018-2020, Loki Project</p>
+        <p class="q-my-sm">Copyright (c) 2018-2020, Italo Project</p>
         <p class="q-my-sm">Copyright (c) 2018, Ryo Currency Project</p>
         <p class="q-my-sm">All rights reserved.</p>
 
         <div class="q-mt-md q-mb-lg external-links">
           <p>
-            <a href="#" @click="openExternal('https://loki.network/')">https://loki.network/</a>
+            <a href="#" @click="openExternal('https://italo.network/')">https://italo.network/</a>
           </p>
           <p>
             <a href="#" @click="openExternal('https://t.me/joinchat/DeNvR0JJ4JPn6TVSQjCsZQ')">Telegram</a>
             -
             <a href="#" @click="openExternal('https://discordapp.com/invite/67GXfD6')">Discord</a>
             -
-            <a href="#" @click="openExternal('https://www.reddit.com/r/LokiProject/')">Reddit</a>
+            <a href="#" @click="openExternal('https://www.reddit.com/r/ItaloProject/')">Reddit</a>
             -
-            <a href="#" @click="openExternal('https://github.com/loki-project/loki-electron-gui-wallet')">Github</a>
+            <a href="#" @click="openExternal('https://github.com/italo-project/italo-electron-gui-wallet')">Github</a>
           </p>
         </div>
         <q-btn color="primary" label="Close" @click="showAbout(false)" />

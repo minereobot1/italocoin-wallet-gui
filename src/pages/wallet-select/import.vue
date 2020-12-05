@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="q-mx-md import-wallet">
-      <LokiField :label="$t('fieldLabels.newWalletName')" :error="$v.wallet.name.$error">
+      <ItaloField :label="$t('fieldLabels.newWalletName')" :error="$v.wallet.name.$error">
         <q-input
           v-model="wallet.name"
           :placeholder="$t('placeholders.walletName')"
@@ -11,9 +11,9 @@
           @keyup.enter="import_wallet"
           @blur="$v.wallet.name.$touch"
         />
-      </LokiField>
+      </ItaloField>
 
-      <LokiField :label="$t('fieldLabels.walletFile')" disable-hover :error="$v.wallet.path.$error">
+      <ItaloField :label="$t('fieldLabels.walletFile')" disable-hover :error="$v.wallet.path.$error">
         <q-input
           v-model="wallet.path"
           :placeholder="$t('placeholders.selectAFile')"
@@ -29,9 +29,9 @@
           :text-color="theme == 'dark' ? 'white' : 'dark'"
           @click="selectFile"
         />
-      </LokiField>
+      </ItaloField>
 
-      <LokiField :label="$t('fieldLabels.password')">
+      <ItaloField :label="$t('fieldLabels.password')">
         <q-input
           v-model="wallet.password"
           :placeholder="$t('placeholders.walletPassword')"
@@ -41,9 +41,9 @@
           dense
           @keyup.enter="import_wallet"
         />
-      </LokiField>
+      </ItaloField>
 
-      <LokiField :label="$t('fieldLabels.confirmPassword')">
+      <ItaloField :label="$t('fieldLabels.confirmPassword')">
         <q-input
           v-model="wallet.password_confirm"
           type="password"
@@ -52,7 +52,7 @@
           dense
           @keyup.enter="import_wallet"
         />
-      </LokiField>
+      </ItaloField>
       <q-btn class="submit-button" color="primary" :label="$tc('buttons.importWallet', 1)" @click="import_wallet" />
     </div>
   </q-page>
@@ -61,10 +61,10 @@
 <script>
 import { required } from "vuelidate/lib/validators";
 import { mapState } from "vuex";
-import LokiField from "components/loki_field";
+import ItaloField from "components/italo_field";
 export default {
   components: {
-    LokiField
+    ItaloField
   },
   data() {
     return {
@@ -172,7 +172,7 @@ export default {
     }
   }
 
-  .loki-field {
+  .italo-field {
     margin-top: 16px;
   }
 }

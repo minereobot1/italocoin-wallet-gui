@@ -36,7 +36,7 @@
 
     <template v-if="config_daemon.type != 'remote'">
       <div class="row pl-sm">
-        <LokiField
+        <ItaloField
           class="col-8"
           :label="$t('fieldLabels.localDaemonIP')"
           disable
@@ -49,8 +49,8 @@
             borderless
             dense
           />
-        </LokiField>
-        <LokiField
+        </ItaloField>
+        <ItaloField
           class="col-4"
           :label="$t('fieldLabels.localDaemonPort') + '(RPC)'"
         >
@@ -66,13 +66,13 @@
             borderless
             dense
           />
-        </LokiField>
+        </ItaloField>
       </div>
     </template>
 
     <template v-if="config_daemon.type != 'local'">
       <div class="row q-mt-md pl-sm">
-        <LokiField class="col-8" :label="$t('fieldLabels.remoteNodeHost')">
+        <ItaloField class="col-8" :label="$t('fieldLabels.remoteNodeHost')">
           <q-input
             v-model="config_daemon.remote_host"
             :placeholder="daemon_defaults.remote_host"
@@ -101,8 +101,8 @@
               </q-item>
             </q-list>
           </q-btn-dropdown>
-        </LokiField>
-        <LokiField class="col-4" :label="$t('fieldLabels.remoteNodePort')">
+        </ItaloField>
+        <ItaloField class="col-4" :label="$t('fieldLabels.remoteNodePort')">
           <q-input
             v-model="config_daemon.remote_port"
             :placeholder="toString(daemon_defaults.remote_port)"
@@ -115,12 +115,12 @@
             borderless
             dense
           />
-        </LokiField>
+        </ItaloField>
       </div>
     </template>
 
     <div class="col q-mt-md pt-sm">
-      <LokiField :label="$t('fieldLabels.dataStoragePath')" disable-hover>
+      <ItaloField :label="$t('fieldLabels.dataStoragePath')" disable-hover>
         <q-input
           v-model="config.app.data_dir"
           disable
@@ -143,8 +143,8 @@
           @click="selectPath('data')"
           >{{ $t("buttons.selectLocation") }}</q-btn
         >
-      </LokiField>
-      <LokiField :label="$t('fieldLabels.walletStoragePath')" disable-hover>
+      </ItaloField>
+      <ItaloField :label="$t('fieldLabels.walletStoragePath')" disable-hover>
         <q-input
           v-model="config.app.wallet_data_dir"
           disable
@@ -167,7 +167,7 @@
           @click="selectPath('wallet')"
           >{{ $t("buttons.selectLocation") }}</q-btn
         >
-      </LokiField>
+      </ItaloField>
     </div>
 
     <q-expansion-item
@@ -175,7 +175,7 @@
       header-class="q-mt-sm non-selectable row reverse advanced-options-label"
     >
       <div class="row pl-sm q-mt-sm">
-        <LokiField
+        <ItaloField
           class="col-6"
           :label="$t('fieldLabels.daemonLogLevel')"
           :disable="is_remote"
@@ -193,8 +193,8 @@
             borderless
             dense
           />
-        </LokiField>
-        <LokiField class="col-6" :label="$t('fieldLabels.walletLogLevel')">
+        </ItaloField>
+        <ItaloField class="col-6" :label="$t('fieldLabels.walletLogLevel')">
           <q-input
             v-model="config.wallet.log_level"
             :placeholder="toString(defaults.wallet.log_level)"
@@ -207,12 +207,12 @@
             borderless
             dense
           />
-        </LokiField>
+        </ItaloField>
       </div>
 
       <div class="row pl-sm q-mt-md">
         <!-- TODO: Can be generalised to a "port" (or similar) field -->
-        <LokiField
+        <ItaloField
           class="col-3"
           :label="$t('fieldLabels.maxIncomingPeers')"
           :disable="is_remote"
@@ -230,8 +230,8 @@
             borderless
             dense
           />
-        </LokiField>
-        <LokiField
+        </ItaloField>
+        <ItaloField
           class="col-3"
           :label="$t('fieldLabels.maxOutgoingPeers')"
           :disable="is_remote"
@@ -249,8 +249,8 @@
             borderless
             dense
           />
-        </LokiField>
-        <LokiField
+        </ItaloField>
+        <ItaloField
           class="col-3"
           :label="$t('fieldLabels.limitUploadRate')"
           :disable="is_remote"
@@ -269,8 +269,8 @@
             borderless
             dense
           />
-        </LokiField>
-        <LokiField
+        </ItaloField>
+        <ItaloField
           class="col-3"
           :label="$t('fieldLabels.limitDownloadRate')"
           :disable="is_remote"
@@ -289,10 +289,10 @@
             borderless
             dense
           />
-        </LokiField>
+        </ItaloField>
       </div>
       <div class="row pl-sm q-mt-md">
-        <LokiField
+        <ItaloField
           class="col-3"
           :label="$t('fieldLabels.daemonP2pPort')"
           :disable="is_remote"
@@ -311,8 +311,8 @@
             borderless
             dense
           />
-        </LokiField>
-        <LokiField class="col-3" :label="$t('fieldLabels.internalWalletPort')">
+        </ItaloField>
+        <ItaloField class="col-3" :label="$t('fieldLabels.internalWalletPort')">
           <q-input
             v-model="config.app.ws_bind_port"
             :placeholder="toString(defaults.app.ws_bind_port)"
@@ -326,8 +326,8 @@
             borderless
             dense
           />
-        </LokiField>
-        <LokiField
+        </ItaloField>
+        <ItaloField
           class="col-3"
           :label="$t('fieldLabels.walletRPCPort')"
           :disable="is_remote"
@@ -346,9 +346,9 @@
             borderless
             dense
           />
-        </LokiField>
+        </ItaloField>
       </div>
-      <LokiField
+      <ItaloField
         :helper="$t('fieldLabels.chooseNetwork')"
         :label="$t('fieldLabels.network')"
         class="network-group-field"
@@ -362,18 +362,18 @@
             { label: 'Test Net', value: 'testnet' }
           ]"
         />
-      </LokiField>
+      </ItaloField>
     </q-expansion-item>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import LokiField from "components/loki_field";
+import ItaloField from "components/italo_field";
 export default {
   name: "SettingsGeneral",
   components: {
-    LokiField
+    ItaloField
   },
   props: {
     randomiseRemote: {

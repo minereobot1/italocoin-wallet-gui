@@ -12,12 +12,12 @@
           link
           no-border
           :dark="theme == 'dark'"
-          class="loki-list tx-list"
+          class="italo-list tx-list"
         >
           <q-item
             v-for="(tx, i) in tx_list_paged"
             :key="`${tx.txid}-${tx.type}-${i}`"
-            class="loki-list-item transaction"
+            class="italo-list-item transaction"
             :class="'tx-' + tx.type"
             @click.native="details(tx)"
           >
@@ -26,7 +26,7 @@
             </q-item-section>
             <q-item-label class="main">
               <q-item-label class="amount">
-                <FormatLoki :amount="tx.amount || 0" />
+                <FormatItalo :amount="tx.amount || 0" />
               </q-item-label>
               <q-item-label caption>{{ tx.txid }}</q-item-label>
             </q-item-label>
@@ -61,7 +61,7 @@ const { clipboard } = require("electron");
 import { mapState } from "vuex";
 import { QSpinnerDots } from "quasar";
 import TxDetails from "components/tx_details";
-import FormatLoki from "components/format_loki";
+import FormatItalo from "components/format_italo";
 import { i18n } from "boot/i18n";
 import ContextMenu from "components/menus/contextmenu";
 
@@ -95,7 +95,7 @@ export default {
   components: {
     QSpinnerDots,
     TxDetails,
-    FormatLoki,
+    FormatItalo,
     ContextMenu
   },
   props: {
@@ -328,7 +328,7 @@ export default {
 
 <style lang="scss">
 .tx-list {
-  .loki-list-item {
+  .italo-list-item {
     padding-top: 0;
     padding-bottom: 0;
   }

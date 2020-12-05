@@ -40,7 +40,7 @@
                 </div>
                 <div class="value">
                   <span
-                    ><FormatLoki :amount="node.staking_requirement" raw-value
+                    ><FormatItalo :amount="node.staking_requirement" raw-value
                   /></span>
                 </div>
               </div>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="value">
                   <span
-                    ><FormatLoki :amount="node.total_contributed" raw-value
+                    ><FormatItalo :amount="node.total_contributed" raw-value
                   /></span>
                 </div>
               </div>
@@ -120,7 +120,7 @@
               </div>
             </div>
           </div>
-          <q-list no-border :dark="theme == 'dark'" class="loki-list">
+          <q-list no-border :dark="theme == 'dark'" class="italo-list">
             <q-item-label class="contributors-title"
               >{{
                 $t("strings.serviceNodeDetails.contributors")
@@ -129,7 +129,7 @@
             <q-item
               v-for="contributor in contributors"
               :key="contributor.address"
-              class="loki-list-item"
+              class="italo-list-item"
               clickable
               @click="openUserWalletInfo(contributor.address)"
             >
@@ -150,7 +150,7 @@
                     >{{ $t("strings.operator") }} •
                   </span>
                   {{ $t("strings.contribution") }}:
-                  <FormatLoki :amount="contributor.amount" raw-value />
+                  <FormatItalo :amount="contributor.amount" raw-value />
                 </q-item-label>
               </q-item-label>
               <ContextMenu
@@ -175,12 +175,12 @@
 const { clipboard } = require("electron");
 import { mapState } from "vuex";
 import { date } from "quasar";
-import FormatLoki from "components/format_loki";
+import FormatItalo from "components/format_italo";
 import ContextMenu from "components/menus/contextmenu";
 export default {
   name: "ServiceNodeDetails",
   components: {
-    FormatLoki,
+    FormatItalo,
     ContextMenu
   },
   props: {
@@ -245,7 +245,7 @@ export default {
   }),
   methods: {
     openUserWalletInfo(contributorAddress) {
-      const url = `https://www.lokisn.com/user/${contributorAddress}`;
+      const url = `https://www.italosn.com/user/${contributorAddress}`;
       this.$gateway.send("core", "open_url", {
         url
       });

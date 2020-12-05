@@ -1,6 +1,6 @@
 <template>
   <q-page class="receive">
-    <q-list link no-border :dark="theme == 'dark'" class="loki-list">
+    <q-list link no-border :dark="theme == 'dark'" class="italo-list">
       <q-item-label header>{{ $t("strings.addresses.myPrimaryAddress") }}</q-item-label>
       <ReceiveItem
         v-for="address in address_list.primary"
@@ -161,7 +161,7 @@ export default {
     font-weight: 400;
   }
 
-  .loki-list-item {
+  .italo-list-item {
     cursor: pointer;
 
     .q-item-section {

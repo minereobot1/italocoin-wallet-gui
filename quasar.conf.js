@@ -156,12 +156,12 @@ module.exports = function() {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: "com.loki-project.electron-wallet",
-        productName: "Loki Electron Wallet",
+        appId: "com.italo-project.electron-wallet",
+        productName: "Italo Electron Wallet",
         copyright:
-          "Copyright © 2018-2020 Loki Project, 2018 Ryo Currency Project",
+          "Copyright © 2018-2020 Italo Project, 2018 Ryo Currency Project",
         afterSign: "build/notarize.js",
-        artifactName: "loki-electron-wallet-${version}-${os}.${ext}",
+        artifactName: "italo-electron-wallet-${version}-${os}.${ext}",
         publish: "github",
 
         linux: {
@@ -184,7 +184,7 @@ module.exports = function() {
         },
 
         dmg: {
-          background: "src-electron/build/loki-dmg.tiff",
+          background: "src-electron/build/italo-dmg.tiff",
           sign: false
         },
 

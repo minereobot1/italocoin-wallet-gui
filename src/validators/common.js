@@ -17,8 +17,8 @@ export const session_id = input => {
   return input.length === 66 && /^05[0-9A-Za-z]+$/.test(input);
 };
 
-// shortened Lokinet LNS name
-export const lokinet_name = (input, lokiExt = false) => {
+// shortened Italonet LNS name
+export const italonet_name = (input, italoExt = false) => {
   let inputSafe = input || "";
   let maxLength = 32;
 
@@ -32,10 +32,10 @@ export const lokinet_name = (input, lokiExt = false) => {
     !(inputSafe.slice(0, 2) === "xn")
   );
 
-  let reservedNames = ["localhost", "loki", "snode"];
+  let reservedNames = ["localhost", "italo", "snode"];
   let regexCheck;
-  if (lokiExt) {
-    regexCheck = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.loki$/.test(inputSafe);
+  if (italoExt) {
+    regexCheck = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.italo$/.test(inputSafe);
   } else {
     regexCheck = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(inputSafe);
   }
@@ -47,13 +47,13 @@ export const lokinet_name = (input, lokiExt = false) => {
   );
 };
 
-export const session_name_or_lokinet_name = input => {
+export const session_name_or_italonet_name = input => {
   const lcInput = input.toLowerCase();
-  return session_name(lcInput) || lokinet_name(lcInput, true);
+  return session_name(lcInput) || italonet_name(lcInput, true);
 };
 
-// Full lokinet address
-export const lokinet_address = input => {
+// Full italonet address
+export const italonet_address = input => {
   return (
     input.length === 52 &&
     /^[ybndrfg8ejkmcpqxot1uwisza345h769]{51}[yo]$/.test(input)

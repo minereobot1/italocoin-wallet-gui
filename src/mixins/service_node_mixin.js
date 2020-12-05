@@ -2,16 +2,16 @@ export default {
   methods: {
     getMinContribution(node) {
       const MAX_NUMBER_OF_CONTRIBUTORS = 4;
-      // This is calculated in the same way it is calculated on the LokiBlocks site
+      // This is calculated in the same way it is calculated on the ItaloBlocks site
       const openContributionRemaining = this.openForContribution(node);
       const minContributionAtomicUnits =
         !node.funded && node.contributors.length < MAX_NUMBER_OF_CONTRIBUTORS
           ? openContributionRemaining /
             (MAX_NUMBER_OF_CONTRIBUTORS - node.contributors.length)
           : 0;
-      const minContributionLoki = minContributionAtomicUnits / 1e9;
+      const minContributionItalo = minContributionAtomicUnits / 1e9;
       // ceiling to 4 decimal places
-      return minContributionLoki.toFixed(4);
+      return minContributionItalo.toFixed(4);
     },
     openForContribution(node) {
       const openContributionRemaining =
@@ -20,7 +20,7 @@ export default {
           : 0;
       return openContributionRemaining;
     },
-    openForContributionLoki(node) {
+    openForContributionItalo(node) {
       return (this.openForContribution(node) / 1e9).toFixed(4);
     }
   }

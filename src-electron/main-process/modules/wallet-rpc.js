@@ -137,8 +137,8 @@ export class WalletRPC {
 
         const rpcExecutable =
           process.platform === "win32"
-            ? "loki-wallet-rpc.exe"
-            : "loki-wallet-rpc";
+            ? "italo-wallet-rpc.exe"
+            : "italo-wallet-rpc";
         // eslint-disable-next-line no-undef
         const rpcPath = path.join(__ryo_bin, rpcExecutable);
 
@@ -146,7 +146,7 @@ export class WalletRPC {
         if (!fs.existsSync(rpcPath)) {
           reject(
             new Error(
-              "Failed to find Loki Wallet RPC. Please make sure you anti-virus has not removed it."
+              "Failed to find Italo Wallet RPC. Please make sure you anti-virus has not removed it."
             )
           );
           return;
@@ -286,7 +286,7 @@ export class WalletRPC {
         break;
 
       case "restore_view_wallet":
-        // TODO: Decide if we want this for loki
+        // TODO: Decide if we want this for italo
         this.restoreViewWallet(
           params.name,
           params.password,
@@ -1078,17 +1078,17 @@ export class WalletRPC {
   }
 
   /*
-  Renews an LNS (Lokinet) mapping, since they can expire
+  Renews an LNS (Italonet) mapping, since they can expire
   type can be:
-  lokinet_1y, lokinet_2y, lokinet_5y, lokinet_10y
+  italonet_1y, italonet_2y, italonet_5y, italonet_10y
   */
   lnsRenewMapping(password, type, name) {
     let _name = name.trim().toLowerCase();
 
-    // the RPC accepts names with the .loki already appeneded only
-    // can be lokinet_1y, lokinet_2y, lokinet_5y, lokinet_10y
-    if (type.startsWith("lokinet")) {
-      _name = _name + ".loki";
+    // the RPC accepts names with the .italo already appeneded only
+    // can be italonet_1y, italonet_2y, italonet_5y, italonet_10y
+    if (type.startsWith("italonet")) {
+      _name = _name + ".italo";
     }
 
     crypto.pbkdf2(
@@ -1153,9 +1153,9 @@ export class WalletRPC {
   */
   async decryptLNSRecord(type, name) {
     let _type = type;
-    // type can initially be "lokinet_1y" etc. on a purchase
-    if (type.startsWith("lokinet")) {
-      _type = "lokinet";
+    // type can initially be "italonet_1y" etc. on a purchase
+    if (type.startsWith("italonet")) {
+      _type = "italonet";
     }
     try {
       const record = await this.getLNSRecord(_type, name);
@@ -1199,8 +1199,8 @@ export class WalletRPC {
   Get a LNS record associated with the given name
   */
   async getLNSRecord(type, name) {
-    // We currently only support session and lokinet
-    const types = ["session", "lokinet"];
+    // We currently only support session and italonet
+    const types = ["session", "italonet"];
     if (!types.includes(type)) return null;
 
     if (!name || name.trim().length === 0) return null;
@@ -1208,8 +1208,8 @@ export class WalletRPC {
     const lowerCaseName = name.toLowerCase();
 
     let fullName = lowerCaseName;
-    if (type === "lokinet" && !name.endsWith(".loki")) {
-      fullName = fullName + ".loki";
+    if (type === "italonet" && !name.endsWith(".italo")) {
+      fullName = fullName + ".italo";
     }
 
     const nameHash = await this.hashLNSName(type, lowerCaseName);
@@ -1236,8 +1236,8 @@ export class WalletRPC {
     if (!type || !name) return null;
 
     let fullName = name;
-    if (type === "lokinet" && !name.endsWith(".loki")) {
-      fullName = fullName + ".loki";
+    if (type === "italonet" && !name.endsWith(".italo")) {
+      fullName = fullName + ".italo";
     }
 
     try {
@@ -1264,8 +1264,8 @@ export class WalletRPC {
     if (!type || !name || !encrypted_value) return null;
 
     let fullName = name;
-    if (type === "lokinet" && !name.endsWith(".loki")) {
-      fullName = fullName + ".loki";
+    if (type === "italonet" && !name.endsWith(".italo")) {
+      fullName = fullName + ".italo";
     }
 
     try {
@@ -1789,11 +1789,11 @@ export class WalletRPC {
     const _owner = owner.trim() === "" ? null : owner;
     const backup_owner = backupOwner.trim() === "" ? null : backupOwner;
 
-    // the RPC accepts names with the .loki already appeneded only
-    // can be lokinet_1y, lokinet_2y, lokinet_5y, lokinet_10y
-    if (type.startsWith("lokinet")) {
-      _name = _name + ".loki";
-      value = value + ".loki";
+    // the RPC accepts names with the .italo already appeneded only
+    // can be italonet_1y, italonet_2y, italonet_5y, italonet_10y
+    if (type.startsWith("italonet")) {
+      _name = _name + ".italo";
+      value = value + ".italo";
     }
 
     crypto.pbkdf2(
@@ -1861,11 +1861,11 @@ export class WalletRPC {
     const _owner = owner.trim() === "" ? null : owner;
     const backup_owner = backupOwner.trim() === "" ? null : backupOwner;
 
-    // updated records have type "lokinet" or "session"
+    // updated records have type "italonet" or "session"
     // UI passes the values without the extension
-    if (type === "lokinet") {
-      _name = _name + ".loki";
-      value = value + ".loki";
+    if (type === "italonet") {
+      _name = _name + ".italo";
+      value = value + ".italo";
     }
 
     crypto.pbkdf2(
@@ -2638,9 +2638,9 @@ export class WalletRPC {
       wallets.legacy = [];
       let legacy_paths = [];
       if (os.platform() == "win32") {
-        legacy_paths = ["C:\\ProgramData\\Loki"];
+        legacy_paths = ["C:\\ProgramData\\Italo"];
       } else {
-        legacy_paths = [path.join(os.homedir(), "Loki")];
+        legacy_paths = [path.join(os.homedir(), "Italo")];
       }
       for (var i = 0; i < legacy_paths.length; i++) {
         try {
