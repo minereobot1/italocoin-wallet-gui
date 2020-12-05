@@ -55,9 +55,9 @@ export class Backend {
     const daemon = {
       type: "remote",
       p2p_bind_ip: "0.0.0.0",
-      p2p_bind_port: 22022,
+      p2p_bind_port: 21012,
       rpc_bind_ip: "127.0.0.1",
-      rpc_bind_port: 22023,
+      rpc_bind_port: 21013,
       zmq_rpc_bind_ip: "127.0.0.1",
       out_peers: -1,
       in_peers: -1,
@@ -69,8 +69,8 @@ export class Backend {
     const daemons = {
       mainnet: {
         ...daemon,
-        remote_host: "imaginary.stream",
-        remote_port: 22023
+        remote_host: "explorer.italo.network",
+        remote_port: 21013
       },
       stagenet: {
         ...daemon,
@@ -81,8 +81,8 @@ export class Backend {
       testnet: {
         ...daemon,
         type: "local",
-        p2p_bind_port: 38156,
-        rpc_bind_port: 38157
+        p2p_bind_port: 31012,
+        rpc_bind_port: 31013
       }
     };
 
@@ -111,20 +111,8 @@ export class Backend {
 
     this.remotes = [
       {
-        host: "imaginary.stream",
-        port: "22023"
-      },
-      {
-        host: "nodes.hashvault.pro",
-        port: "22023"
-      },
-      {
-        host: "explorer.italo.aussie-pools.com",
-        port: "18081"
-      },
-      {
-        host: "public.italo.foundation",
-        port: "22023"
+        host: "explorer.italo.network",
+        port: "21013"
       }
     ];
 
