@@ -35,11 +35,11 @@ export class Backend {
 
   init(config) {
     if (os.platform() === "win32") {
-      this.config_dir = "C:\\ProgramData\\italo";
-      this.wallet_dir = `${os.homedir()}\\Documents\\Italo`;
+      this.config_dir = "C:\\ProgramData\\italodb";
+      this.wallet_dir = `${os.homedir()}\\Documents\\Italodb`;
     } else {
-      this.config_dir = path.join(os.homedir(), ".italo");
-      this.wallet_dir = path.join(os.homedir(), "Italo");
+      this.config_dir = path.join(os.homedir(), ".italodb");
+      this.wallet_dir = path.join(os.homedir(), "Italodb");
     }
 
     if (!fs.existsSync(this.config_dir)) {
