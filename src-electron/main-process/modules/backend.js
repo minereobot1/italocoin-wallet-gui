@@ -272,7 +272,7 @@ export class Backend {
           const baseUrl =
             net_type === "testnet"
               ? "https://italotestnet.com"
-              : "https://italoblocks.com";
+              : "https://explorer.italo.network";
           const url = `${baseUrl}/${path}/`;
           require("electron").shell.openExternal(url + params.id);
         }
@@ -325,7 +325,7 @@ export class Backend {
   async checkVersion() {
     try {
       const { data } = await axios.get(
-        "https://api.github.com/repos/italo-project/italo-electron-gui-wallet/releases/latest"
+        "https://api.github.com/repos/italocoin-project/italo-electron-gui-wallet/releases/latest"
       );
       // remove the 'v' from front of the version
       const latestVersion = data.tag_name.substring(1);
