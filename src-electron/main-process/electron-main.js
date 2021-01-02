@@ -119,7 +119,7 @@ function createWindow() {
       if (err) throw err;
 
       let config = {
-        port: 12313,
+        port: 12323,
         token: buffer.toString("hex")
       };
 
